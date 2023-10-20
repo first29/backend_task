@@ -15,6 +15,7 @@ export const actualizar_fase = async (req, res) => {
 };
 
 export const getTasks = async (req, res) => {
+  console.log("getTasks");
   const connection = await connect();
   const [rows] = await connection.execute("SELECT * FROM tareas_del_proyecto");
   res.json(rows);
@@ -39,6 +40,7 @@ export const saveTask = async (req, res) => {
 };
 
 export const getTask = async (req, res) => {
+  console.log("getTask");
   const connection = await connect();
   const rows = await connection.execute("call tareas_por_cuenta(?)", [
     req.params.id,
@@ -65,12 +67,14 @@ export const updateTask = async (req, res) => {
 };
 
 export const getTasksCount = async (req, res) => {
+  console.log("getTasksCount");
   const connection = await connect();
   const [rows] = await connection.execute("SELECT COUNT(*) FROM tasks");
   res.json(rows[0]["COUNT(*)"]);
 };
 
 export const login = async (req, res) => {
+  console.log("login");
   const { correo, contraseña } = req.body;
   console.log("parametros: " + correo + " " + contraseña);
   const connection = await connect();
