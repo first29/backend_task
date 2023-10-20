@@ -22,6 +22,7 @@ export const getTasks = async (req, res) => {
 };
 
 export const saveTask = async (req, res) => {
+  
   try {
     const connection = await connect();
     const [results] = await connection.execute(
@@ -33,6 +34,7 @@ export const saveTask = async (req, res) => {
       id: results[0][0].id_tarea,
       ...req.body,
     };
+    console.log("guardando");
     res.json(newUser);
   } catch (error) {
     console.error(error);
@@ -40,11 +42,12 @@ export const saveTask = async (req, res) => {
 };
 
 export const getTask = async (req, res) => {
-  console.log("getTask");
+  
   const connection = await connect();
   const rows = await connection.execute("call tareas_por_cuenta(?)", [
     req.params.id,
   ]);
+  console.log("getTask");
   res.json(rows[0][0]);
 };
 
