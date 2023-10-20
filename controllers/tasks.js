@@ -97,6 +97,6 @@ export const login = async (req, res) => {
     return res.json({ token });
   } catch (error) {
     console.error("Error en la autentificacion", error);
-    res.status(500).json({ error: 'Error en el servidor' });
+    res.status(500).json({ error: error });
   }
 };
